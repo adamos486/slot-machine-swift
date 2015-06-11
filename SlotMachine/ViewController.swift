@@ -24,6 +24,12 @@ class ViewController: UIViewController {
     var betTitleLabel: UILabel!
     var winnerPaidTitleLabel: UILabel!
     
+    //Buttons in fourth container
+    var resetButton: UIButton!
+    var betOneButton: UIButton!
+    var betMaxButton: UIButton!
+    var spinButton: UIButton!
+    
     //Transformed into either a double or a float based on what system architecture you're using either 32bit or 64bit.
     //k means constant.
     //this will give us a nice 10 point margin on each side of the view.
@@ -32,14 +38,17 @@ class ViewController: UIViewController {
     let kNumberOfContainers = 3
     let kNumberOfSlots = 3
     let kMarginForSlot: CGFloat = 2.0
+    let kHalf: CGFloat = 1.0 / 2.0
+    let kEighth: CGFloat = 1.0 / 8.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupContainerViews()
-        setupFirstContainer(firstContainer)
-        setupSecondContainer(secondContainer)
-        setupThirdContainer(thirdContainer)
+        setupFirstContainer(forContainer: firstContainer)
+        setupSecondContainer(forContainer: secondContainer)
+        setupThirdContainer(forContainer: thirdContainer)
+        setupFourthContainer(forContainer: fourthContainer)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,7 +109,7 @@ class ViewController: UIViewController {
         self.view.addSubview(self.fourthContainer)
     }
     
-    func setupFirstContainer(containerView: UIView) {
+    func setupFirstContainer(forContainer containerView: UIView) {
         self.titleLabel = UILabel()
         self.titleLabel.text = "Super Slots"
         self.titleLabel.textColor = UIColor.yellowColor()
@@ -110,7 +119,7 @@ class ViewController: UIViewController {
         containerView.addSubview(self.titleLabel)
     }
     
-    func setupSecondContainer(containerView: UIView) {
+    func setupSecondContainer(forContainer containerView: UIView) {
         for var containerNumber = 0; containerNumber < kNumberOfContainers; ++containerNumber {
             for var slotNumber = 0; slotNumber < kNumberOfSlots; ++slotNumber {
                 var slotImageView = UIImageView()
@@ -127,7 +136,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func setupThirdContainer(containerView: UIView) {
+    func setupThirdContainer(forContainer containerView: UIView) {
         self.creditsLabel = UILabel()
         self.creditsLabel.text = "000000"
         self.creditsLabel.textColor = UIColor.redColor()
@@ -187,6 +196,27 @@ class ViewController: UIViewController {
         self.winnerPaidTitleLabel.center = CGPoint(x: containerView.frame.width * kSixth * 5,
             y: containerView.frame.height * kThird * 2)
         containerView.addSubview(self.winnerPaidTitleLabel)
+    }
+    
+    func setupFourthContainer(forContainer containerView: UIView) {
+        self.resetButton = UIButton()
+        self.resetButton.setTitle("Reset", forState: UIControlState.Normal)
+        self.resetButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.resetButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Selected)
+        //Add question mark here because titleLabel may or may not exist.
+        //titleLabel may not exist if we don't set a title.
+        self.resetButton.titleLabel?.font = UIFont(name: "Superclarendon-Bold", size: 12)
+        self.resetButton.backgroundColor = UIColor.lightGrayColor()
+        self.resetButton.sizeToFit()
+        self.resetButton.center = CGPoint(x: containerView.frame.width * kEighth, y: containerView.frame.height * kHalf)
+        self.resetButton.addTarget(self, action: "resetButtonPressed:",
+            forControlEvents: UIControlEvents.TouchUpInside)
+        containerView.addSubview(self.resetButton)
+    }
+    
+    //IBActions
+    func resetButtonPressed(resetButton: UIButton) {
+        println("reset button pressed!")
     }
 }
 
