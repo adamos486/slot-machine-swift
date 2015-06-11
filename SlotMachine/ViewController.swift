@@ -223,6 +223,31 @@ class ViewController: UIViewController {
         self.betOneButton.center = CGPoint(x: containerView.frame.width * 3 * kEighth, y: containerView.frame.height * kHalf)
         self.betOneButton.addTarget(self, action: "betOnePressed:", forControlEvents: UIControlEvents.TouchUpInside)
         containerView.addSubview(self.betOneButton)
+        
+        self.betMaxButton = UIButton()
+        self.betMaxButton.setTitle("Bet Max", forState: UIControlState.Normal)
+        self.betMaxButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.betMaxButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Highlighted)
+        self.betMaxButton.titleLabel?.font = UIFont(name: "Superclarendon", size: 12)
+        self.betMaxButton.backgroundColor = UIColor.lightGrayColor()
+        self.betMaxButton.sizeToFit()
+        self.betMaxButton.center = CGPoint(x: containerView.frame.width * 5 * kEighth,
+            y: containerView.frame.height * kHalf)
+        self.betMaxButton.addTarget(self, action: "betMaxPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        containerView.addSubview(self.betMaxButton)
+        
+        self.spinButton = UIButton()
+        self.spinButton.setTitle("Spin!", forState: UIControlState.Normal)
+        self.spinButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.spinButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Highlighted)
+        self.spinButton.titleLabel?.font = UIFont(name: "Superclarendon", size: 12)
+        self.spinButton.backgroundColor = UIColor.lightGrayColor()
+        self.spinButton.sizeToFit()
+        self.spinButton.center = CGPoint(x: containerView.frame.width * 7 * kEighth,
+            y: containerView.frame.height * kHalf)
+        self.spinButton.addTarget(self, action: "spinPressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        containerView.addSubview(self.spinButton)
+        
     }
     
     //IBActions
@@ -232,6 +257,14 @@ class ViewController: UIViewController {
     
     func betOnePressed(betOneButton: UIButton) {
         println("bet one pressed")
+    }
+    
+    func spinPressed(spinButton: UIButton) {
+        println("spin pressed")
+    }
+    
+    func betMaxPressed(betMaxButton: UIButton) {
+        println("bet max pressed")
     }
 }
 
