@@ -202,21 +202,36 @@ class ViewController: UIViewController {
         self.resetButton = UIButton()
         self.resetButton.setTitle("Reset", forState: UIControlState.Normal)
         self.resetButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        self.resetButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Selected)
+        self.resetButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Highlighted)
         //Add question mark here because titleLabel may or may not exist.
         //titleLabel may not exist if we don't set a title.
-        self.resetButton.titleLabel?.font = UIFont(name: "Superclarendon-Bold", size: 12)
+        self.resetButton.titleLabel?.font = UIFont(name: "Superclarendon", size: 12)
         self.resetButton.backgroundColor = UIColor.lightGrayColor()
         self.resetButton.sizeToFit()
         self.resetButton.center = CGPoint(x: containerView.frame.width * kEighth, y: containerView.frame.height * kHalf)
         self.resetButton.addTarget(self, action: "resetButtonPressed:",
             forControlEvents: UIControlEvents.TouchUpInside)
         containerView.addSubview(self.resetButton)
+        
+        self.betOneButton = UIButton()
+        self.betOneButton.setTitle("Bet One", forState: UIControlState.Normal)
+        self.betOneButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        self.betOneButton.setTitleColor(UIColor.redColor(), forState: UIControlState.Highlighted)
+        self.betOneButton.titleLabel?.font = UIFont(name: "Superclarendon", size: 12)
+        self.betOneButton.backgroundColor = UIColor.lightGrayColor()
+        self.betOneButton.sizeToFit()
+        self.betOneButton.center = CGPoint(x: containerView.frame.width * 3 * kEighth, y: containerView.frame.height * kHalf)
+        self.betOneButton.addTarget(self, action: "betOnePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        containerView.addSubview(self.betOneButton)
     }
     
     //IBActions
     func resetButtonPressed(resetButton: UIButton) {
         println("reset button pressed!")
+    }
+    
+    func betOnePressed(betOneButton: UIButton) {
+        println("bet one pressed")
     }
 }
 
